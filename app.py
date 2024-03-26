@@ -114,8 +114,8 @@ def sidebar_input_features(
         min_value=0.1, max_value=2.0, value=0.7, step=0.01)
     # Alcohol
     alcohol = st.sidebar.slider(
-        "Спирт",
-        min_value=0.1, max_value=20.0, value=11.4, step=0.1)
+        "Процент спирта",
+        min_value=0.1, max_value=35.0, value=11.4, step=0.1)
 
     translation = {
         "Красное": "red",
