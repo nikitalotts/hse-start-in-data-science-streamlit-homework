@@ -14,7 +14,7 @@ def fit_and_save_model() -> None:
     except Exception as e:
         raise e
 
-@st.cache
+@st.cache_resource
 def load_model_and_predict(
         df: pd.DataFrame,
         path: Optional[str] = None
@@ -96,38 +96,24 @@ def __get_prediction(
     prediction_proba = model.predict_proba(row)
 
     encode_prediction_proba = {
-        0: "Вам не повезло с вероятностью",
-        1: "Вы выживете с вероятностью",
-        2: "Вы выживете с вероятностью",
-        3: "Вы выживете с вероятностью",
-        4: "Вы выживете с вероятностью",
-        5: "Вы выживете с вероятностью",
-        6: "Вы выживете с вероятностью",
-        7: "Вы выживете с вероятностью",
-        8: "Вы выживете с вероятностью",
-        9: "Вы выживете с вероятностью",
-        10: "Вы выживете с вероятностью"
-    }
-    encode_prediction = {
-        0: "Сожалеем, вам не повезло",
-        1: "Ура! Вы будете жить",
-        2: "Ура! Вы будете жить",
-        3: "Ура! Вы будете жить",
-        4: "Ура! Вы будете жить",
-        5: "Ура! Вы будете жить",
-        6: "Ура! Вы будете жить",
-        7: "Ура! Вы будете жить",
-        8: "Ура! Вы будете жить",
-        9: "Ура! Вы будете жить",
-        10: "Ура! Вы будете жить"
+        0: "1",
+        1: "2",
+        2: "3",
+        3: "4",
+        4: "5",
+        5: "6",
+        6: "7",
+        7: "8",
+        8: "9",
+        9: "10",
     }
 
     prediction_data = {}
     for key, value in encode_prediction_proba.items():
-        prediction_data.update({value: prediction_proba[key]})
+        prediction_data.update({value: prediction_proba[0][key]})
 
     prediction_df = pd.DataFrame(prediction_data, index=[0])
-    prediction = encode_prediction[prediction]
+    prediction = prediction[0][0]
 
     return prediction, prediction_df
 
