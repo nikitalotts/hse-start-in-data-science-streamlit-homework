@@ -1,7 +1,8 @@
 import os
 
 
-def set_constants() -> None:
+def set_constants(
+) -> None:
     os.environ['DATA_PATH'] = './data/winequalityN.csv'
     os.environ['DATA_TARGET_FEATURE'] = 'quality'
     os.environ['MODEL_WEIGHTS_PATH'] = "./src/model_weights/catboost_classifier_weights.cbm"

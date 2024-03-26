@@ -6,8 +6,10 @@ from catboost import CatBoostClassifier
 from sklearn.metrics import accuracy_score
 from sklearn.model_selection import train_test_split
 
+
 @st.cache_resource
-def fit_and_save_model() -> None:
+def fit_and_save_model(
+) -> None:
     try:
         model = __init_model()
         __save_model(model)
@@ -46,13 +48,13 @@ def __save_model(
     model.save_model(path)
     print(f"Model was saved to {path}")
 
-
 @st.cache_data
 def __load_data(
         path: Optional[str] = None
 ) -> pd.DataFrame:
     data = pd.read_csv(path if path is not None else os.environ['DATA_PATH'], sep=',')
     data = data.dropna(inplace=False)
+
     return data
 
 @st.cache_data
